@@ -1,0 +1,14 @@
+extern printint x
+extern readint
+
+def fib x =
+  if x < 3:
+    1
+  else:
+    fib(x-1) + fib(x-2)
+
+def main =
+  printint(fib(readint()))
+
+
+1+2+3

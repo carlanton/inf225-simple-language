@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#
+# THE COMPILER
+#
+
+set -e
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 file-to-compile.simple"
+    exit 1
+fi
+
+basename=$(basename "$1" .simple)
+source_file=$1
+ir_file="$basename".ll
+asm_file="$basename".s
+out_file="$basename".out
+
+#
+# Compile Simple to LLVM-IR
+#
+
+../main.byte $source_file 2> $ir_file
+
+#
+# LLVM-IR to assembly
+#
+
+llc -O3 $ir_file > $asm_file
+
+#
+# Assembly + external functions to executable
+#
+
+clang -O3 $asm_file bindings.c -o $out_file
