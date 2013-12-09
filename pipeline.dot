@@ -1,0 +1,31 @@
+digraph {
+
+ node [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         shape = "record"
+     ]
+
+ edge [
+         fontname = "Bitstream Vera Sans"
+         fontsize = 8
+         fontcolor = "black"
+     ]
+
+// all blocks
+source_code [label="Source code"]
+toy [label="main.byte\nLexer + Parser + Code generation"]
+llc [label="llc\nLLVM compiler"]
+clang [label="clang\nC compiler"]
+c_code [label="External C code"]
+exec [label="a.out"]
+
+// relations
+source_code -> toy [label ="  simple lang."]
+toy -> llc  [label="  LLVM IR"]
+llc -> clang [label="  x86 assembly"]
+c_code -> clang [label="  C"]
+clang -> exec
+
+
+}
