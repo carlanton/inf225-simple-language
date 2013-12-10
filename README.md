@@ -153,10 +153,6 @@ The reminding tokens of `stream` and `lhs` are then used as parameters to
 is looked up in a table and uses that to figure out how to construct the tree.
 This is done using the Shunting Yard algorithm.
 
-## Code generation
-
-...
-
 ## The compiler
 
 The goal for the compiler was to produce an executable of out of source code.
