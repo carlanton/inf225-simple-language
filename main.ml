@@ -7,13 +7,6 @@ open Llvm_executionengine
 open Llvm_target
 open Llvm_scalar_opts
 
-let init () =
-  ignore (initialize_native_target());
-  (* Install standard binary operators.
-   * 1 is the lowest precedence. *)
-
-;;
-
 let interactive () =
   print_endline "The Simple Language 1.0";
   Toplevel.print_prompt ();
@@ -58,7 +51,7 @@ let compile filename =
 
 
 let () =
-  init ();
+  ignore (initialize_native_target());
   match Sys.argv with
   | [| _; filename |] -> compile filename
   | _                 -> interactive()
