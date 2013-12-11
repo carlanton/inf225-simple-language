@@ -152,11 +152,11 @@ let codegen_proto (Ast.Prototype (name, args)) =
     | Some f ->
       (* If 'f' already has a body, reject this. *)
       if Llvm.block_begin f <> Llvm.At_end f then
-        raise (Error "redefinition of function");
+        raise (Error "Error: redefinition of function");
 
       (* If 'f' took a different number of arguments, reject. *)
       if Llvm.element_type (Llvm.type_of f) <> ft then
-        raise (Error "redefinition of function with different # args");
+        raise (Error "Error: redefinition of function with different # args");
       f
   in
 
